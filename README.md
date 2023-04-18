@@ -1,4 +1,12 @@
 # CINECA GUIDE
+
+1. [Getting started](#getting-started)
+2. [Submit a job](#command-and-scripts-inside-the-cluster-cineca-to-submit-a-job)
+3. [Additional infos](#cineca-additional-infos)
+4. [Conda and git](#installations-of-conda-and-git-on-the-cluster)
+5. [Singularity](#singularity-additional-infos)
+6. [SLURM](#slurm-cheatsheet)
+
 ## Getting started 
 For registration and account association follow:
 
@@ -131,7 +139,7 @@ Useful links:
 - https://help.itc.rwth-aachen.de/en/service/rhr4fjjutttf/article/1f18ef48d8444f15bd908c592e0c44fb/
 - https://docs.sylabs.io/guides/3.1/user-guide/cli/singularity_shell.html
 
-## SLURMS cheatsheet
+## SLURM cheatsheet
 - submit a job
 	```sbatch <file_name>.sbatch```
 - show all jobs 
