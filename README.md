@@ -12,6 +12,11 @@ For registration and account association follow:
 
 https://wiki.u-gov.it/confluence/display/SCAIUS/UG2.1+Getting+started#expand-3Connectingtothecluster
 
+**Update (08/09/2023)**: 
+If you have already an account on CINECA, notice that it has recently change the authentication procedure for log-in into the cluster:
+- follow this [guide](https://wiki.u-gov.it/confluence/display/SCAIUS/How+to+activate+the+2FA+and+configure+the+OTP) for activating the 2FA (send an email to superc@cineca.it to get the activation link)
+- follow this [guide](https://wiki.u-gov.it/confluence/display/SCAIUS/UG2.1+Getting+started#expand-2Accountassociation) from point n.3, you will install [smallstep](https://smallstep.com/docs/step-cli/installation/#linux-packages-amd64) for creating a new certificate valid for 12 hours on your pc
+
 ## Command and scripts inside the cluster (CINECA) to submit a job
 `./train.sh <num_cpu> <max_walltime>` (e.g. `./train.sh 12 24:00:00`)
 
