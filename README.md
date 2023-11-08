@@ -108,7 +108,7 @@ Cineca works only offline inside the running node. Therefore:
     ```
 - Create a conda environment:
     ```
-	    conda create -n soro_env python=3.8
+	    conda create -n <env_name> python=3.8
 	    conda activate <env_name>
     ```
 - If singularity is not installed:
