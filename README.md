@@ -98,15 +98,38 @@ Cineca works only offline inside the running node. Therefore:
 ### New setup for tracking live of experiments with wandb
 - login node has to create a reverse proxy towards to the compute node, while the running job has to wait this proxy is up before using wandb
 - add this at the begin of your script (use any port you prefer):
-```
-echo Waiting the reverse proxy...
-while ! netstat -an | grep 34567 &> /dev/null; do sleep 1; done
-export HTTP_PROXY=socks5://127.0.0.1:34567
-export HTTPS_PROXY=socks5://127.0.0.1:34567
-export SOCK_PROXY=socks5://127.0.0.1:34567
-echo Reverse proxy is up and running!
-```
-- this script must be in execution for all the duration of the job, controlling periodically which job are in run and opening a new proxy for each of them
+	```
+	echo Waiting the reverse proxy...
+	while ! netstat -an | grep 34567 &> /dev/null; do sleep 1; done
+	export HTTP_PROXY=socks5://127.0.0.1:34567
+	export HTTPS_PROXY=socks5://127.0.0.1:34567
+	export SOCK_PROXY=socks5://127.0.0.1:34567
+	echo Reverse proxy is up and running!
+	```
+- this other script must be in execution for all the duration of the job, controlling periodically which job are in run and opening a new proxy for each of them
+	```
+	#!/bin/bash
+	
+	INTERVAL=10
+
+	while true; do
+    	# Get the list of running jobs for the user
+    	nodes=$(squeue -u $USER -h -t R -o "%N" | uniq)
+
+    	for node in $nodes; do
+
+	        # Check if a reverse proxy is already set up for this job
+		    n=$(ps -f -u $USER | grep -e "ssh.*$node" | wc -l)
+	        if [ $n -eq 1 ]; then
+		echo Creating proxy for $node...
+            	ssh -oStrictHostKeyChecking=no -N -R 34567 -f $node
+        	fi
+	    done
+	
+    	sleep $INTERVAL
+	done
+	```
+
 - ssh connection has kept in background and killled by cineca when the job ended
 - this solution works for wandb, huggingfacehub, and any library/application which use requests - NOT for dataset download by torchvision
   
