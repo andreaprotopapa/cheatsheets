@@ -95,6 +95,20 @@ Cineca works only offline inside the running node. Therefore:
        			wandb sync $1/$dir/wandb/$run --id $RAND_ID;
 		    done
       ```
+### New setup for tracking live of experiments with wandb
+- login node has to create a reverse proxy towards to the compute node, while the running job has to wait this proxy is up before using wandb
+- add this at the begin of your script (use any port you prefer):
+```
+echo Waiting the reverse proxy...
+while ! netstat -an | grep 34567 &> /dev/null; do sleep 1; done
+export HTTP_PROXY=socks5://127.0.0.1:34567
+export HTTPS_PROXY=socks5://127.0.0.1:34567
+export SOCK_PROXY=socks5://127.0.0.1:34567
+echo Reverse proxy is up and running!
+```
+- this script must be in execution for all the duration of the job, controlling periodically which job are in run and opening a new proxy for each of them
+- ssh connection has kept in background and killled by cineca when the job ended
+- this solution works for wandb, huggingfacehub, and any library/application which use requests - NOT for dataset download by torchvision
   
 ## Installations of conda and git on the cluster
 - Install conda:
