@@ -175,7 +175,7 @@ When you use Singularity for the first time you should be take note of these ste
 - pull docker image `<docker_path>` and convert into a singularity image `<container>.sif` (in your login node)
  ```
 	  module load singularity
-	  singularity pull docker://<docker_path>
+	  singularity pull <new_sing_img>.sif docker://<docker_path>
  ```
 - NOTE: if you are not able to pull it from the cluster, you can copy a pre-existent .sif into the cluster
 - test singularity container using
