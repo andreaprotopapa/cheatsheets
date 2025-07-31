@@ -10,12 +10,12 @@
 ## Getting started 
 For registration and account association follow:
 
-https://wiki.u-gov.it/confluence/display/SCAIUS/UG2.1+Getting+started#expand-3Connectingtothecluster
+https://docs.hpc.cineca.it/general/getting_started.html
 
-**Update (08/09/2023)**: 
+**Update (31/07/2025)**: 
 If you have already an account on CINECA, notice that it has recently change the authentication procedure for log-in into the cluster:
-- follow this [guide](https://wiki.u-gov.it/confluence/display/SCAIUS/How+to+activate+the+2FA+and+configure+the+OTP) for activating the 2FA (send an email to superc@cineca.it to get the activation link)
-- follow this [guide](https://wiki.u-gov.it/confluence/display/SCAIUS/UG2.1+Getting+started#expand-2Accountassociation) from point n.3, you will install [smallstep](https://smallstep.com/docs/step-cli/installation/#linux-packages-amd64) for creating a new certificate valid for 12 hours on your pc
+- follow this [guide](https://docs.hpc.cineca.it/general/users_account.html#submit-a-request-to-have-a-user-account) for activating the 2FA (send an email to superc@cineca.it to get the activation link)
+- follow this [guide](https://docs.hpc.cineca.it/general/access.html#access-to-the-systems), you then will install [smallstep](https://docs.hpc.cineca.it/general/access.html#how-to-configure-smallstep-client) for creating a new certificate valid for 12 hours on your pc
 ```
 	eval $(ssh-agent) # activate the ssh-agent
 	step ssh login '<user-email>' --provisioner cineca-hpc #  obtain the certificate
